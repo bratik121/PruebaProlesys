@@ -4,7 +4,7 @@ Página web que funciona como CRUD para diferentes clientes y productos
 
 Desarrollado por:
 
-- [Bryant Mtichell Cisneros Mckale](https://github.com/bratik121)
+- [Bryant Mckale Mtichell Cisneros](https://github.com/bratik121)
 
 ## Configuracion e instalacion de las diferentes librerias
 
