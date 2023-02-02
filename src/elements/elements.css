@@ -44,3 +44,14 @@
 	letter-spacing: 0.15em;
 	background: inherit;
 }
+
+/**select*/
+
+select {
+	background-color: #fff;
+	position: relative;
+	outline: none;
+	font-size: 18px;
+	padding: 3px 16px;
+	height: 38px;
+}

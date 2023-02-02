@@ -8,7 +8,7 @@ module.exports = {
 				blanco: "#F2F2F2",
 				morado: {
 					500: "#826AED",
-					700: "#826aed86",
+					700: "#705bcf",
 				},
 				moradoclaro: "#C879FF",
 				naranja: "#FF6542",
