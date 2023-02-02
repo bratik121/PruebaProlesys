@@ -4,12 +4,17 @@ function Input({
 	label,
 	error,
 	name,
+	inputText,
+	setInputText,
+	refe,
 }: {
 	name: string;
 	label: string;
 	error: string;
+	inputText: string;
+	setInputText: React.Dispatch<React.SetStateAction<string>>;
+	refe: React.RefObject<HTMLInputElement>;
 }) {
-	const [inputText, setInputText] = useState("");
 	return (
 		<div className="inputBox bg-negro">
 			<input
@@ -21,9 +26,10 @@ function Input({
 				onChange={(e) => {
 					setInputText(e.target.value);
 				}}
+				ref={refe}
 			/>
-			<span className="text-blanco ">{label}</span>
-			<p>{error}</p>
+			<span className="text-blanco">{label}</span>
+			<p className="mt-1">{error}</p>
 		</div>
 	);
 }

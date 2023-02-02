@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { useNavigate, Link } from "react-router-dom";
 import { motion as m } from "framer-motion";
+import { useInput } from "../../hooks/hooks";
+import { validateUsuario, validateContraseña } from "../../utils/validations";
+import { truncate } from "../../utils/functions";
 import Button from "../../elements/Button";
 import Input from "../../elements/Input";
 import "./login.css";
 
 function Login() {
-	const [errorUsuario, setErrorUsuario] = React.useState("");
-	const [errorPassword, setErrorPassword] = React.useState("");
+	const usuario = useInput();
+	const contraseña = useInput();
 	const navigate = useNavigate();
 
 	const handleExit = () => {
 		navigate("/");
 	};
+
+	const handleClick = () => {
+		let flags = 0;
+		flags += validateUsuario(usuario);
+		flags += validateContraseña(contraseña);
+		if (flags === 0) {
+			console.log("Todo bien");
+			truncate(usuario);
+			truncate(contraseña);
+		}
+	};
+
 	return (
 		<m.div
 			className="modal-bg w-screen h-screen  bg-[rgba(100,100,100,0.3)] fixed bottom-0 z-50 flex items-center justify-center"
@@ -22,9 +37,10 @@ function Login() {
 			animate={{ opacity: 1 }}
 		>
 			{/* Modal */}
-			<div className="modal h-[27rem] w-[21rem] bg-negro flex flex-col py-3 px-6 rounded-lg justify-around">
-				{/* Icono del modal */}
-				<div>
+			<div className="modal h-[31rem] w-[21rem] bg-negro flex flex-col py-3 px-6 rounded-lg justify-around">
+				{/* Top modal */}
+				<div className="">
+					{/* Close tag */}
 					<div className="w-full flex justify-end ">
 						<AiOutlineClose
 							className="text-3xl hover:text-[color:#826AED86] hover:cursor-pointer transition duration-300"
@@ -38,13 +54,27 @@ function Login() {
 					</div>
 				</div>
 				{/* Inputs del modal */}
-				<div className="login__input flex flex-col gap-7">
-					<Input label="Usuario" error={errorUsuario} name="usuario" />
-					<Input label="Contraseña" error={errorPassword} name="contraseña" />
+				<div className="login__input flex flex-col gap-6 ">
+					<Input
+						label="Usuario"
+						error={usuario.error}
+						name="usuario"
+						inputText={usuario.input}
+						setInputText={usuario.setInput}
+						refe={usuario.ref}
+					/>
+					<Input
+						label="Contraseña"
+						error={contraseña.error}
+						name="contraseña"
+						inputText={contraseña.input}
+						setInputText={contraseña.setInput}
+						refe={contraseña.ref}
+					/>
 				</div>
 				{/* Boton del modal */}
-				<div className="footer w-full flex flex-col items-center gap-2">
-					<Button label="Iniciar Sesion" />
+				<div className="footer w-full flex flex-col items-center gap-2 mt-2 	">
+					<Button label="Iniciar Sesion" onClick={handleClick} />
 					<Link
 						to="/register"
 						className="	 text-blanco hover:text-moradoclaro transition duration-300 relative"
