@@ -1,5 +1,46 @@
 /**Boton*/
 
 .Button {
-	background-color: #826aed5d;
+	background-color: #826aed;
+	transition: ease-in 0.2s;
+}
+
+.Button:hover {
+	background-color: #f2f2f2;
+}
+
+/**Inputs/**/
+
+.inputBox {
+	position: relative;
+	width: 100%;
+}
+
+.inputBox input {
+	border-radius: 5px;
+	width: 100%;
+	padding: 10px;
+	outline: none;
+	font-size: 1em;
+}
+
+.inputBox span {
+	top: 1px;
+	position: absolute;
+	padding: 10px;
+	left: 5px;
+	pointer-events: none;
+	font-size: 1em;
+	transition: all 0.3s ease, background 1ms;
+}
+
+.inputBox input.inUse ~ span,
+.inputBox input:focus ~ span {
+	top: 0;
+	left: 10px;
+	transform: translateY(-50%);
+	font-size: 0.85em;
+	padding: 0 10px;
+	letter-spacing: 0.15em;
+	background: inherit;
 }

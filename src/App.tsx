@@ -1,30 +1,24 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import Nav from "./components/nav/Nav";
 import Main from "./components/main/Main";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import ListaProductos from "./components/listaProductos/ListaProductos";
 import FormProducto from "./components/formProducto/FormProducto";
-import Button from "./elements/Button";
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
-		<div className="App bg-negro text-blanco w-screen h-screen">
+		<div className="App bg-negro text-morado-500 w-screen h-screen overflow-hidden">
 			<Nav />
-			<ul className="flex flex-col">
-				<Main />
-				<Login />
-				<Register />
-				<ListaProductos />
-				<FormProducto />
-				<div className="w-[100px]">
-					<Button label="registrarse" />
-				</div>
-			</ul>
+			<Routes>
+				<Route path="/" element={<Main />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/productlist" element={<ListaProductos />} />
+				<Route path="/productform" element={<FormProducto />} />
+			</Routes>
 		</div>
 	);
 }

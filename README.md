@@ -23,3 +23,7 @@ npm create vite
 - Instalamos react redux, el cual será nuestra herramienta de compilacion para el proyecto, su documentación la podremos encontrar en [vite](https://vitejs.dev/guide/), y para instalarlo usaremos los siguientes comandos:
 
 - Instalamos framer motion, el cual será nuestra herramienta de compilacion para el proyecto, su documentación la podremos encontrar en [vite](https://vitejs.dev/guide/), y para instalarlo usaremos los siguientes comandos:
+
+- Instalamos react icons, el cual será nuestra herramienta de compilacion para el proyecto, su documentación la podremos encontrar en [vite](https://vitejs.dev/guide/), y para instalarlo usaremos los siguientes comandos:
+
+`npm install react-icons --save`

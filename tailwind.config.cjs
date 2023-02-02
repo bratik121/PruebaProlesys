@@ -4,9 +4,12 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				negro: "#2E282A",
+				negro: "#06070E",
 				blanco: "#F2F2F2",
-				morado: "#826AED",
+				morado: {
+					500: "#826AED",
+					700: "#826aed86",
+				},
 				moradoclaro: "#C879FF",
 				naranja: "#FF6542",
 			},
