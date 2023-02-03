@@ -30,7 +30,7 @@ export const apiSlice: any = createApi({
 			}),
 		}),
 		getProducts: builder.query({
-			query: () => ({
+			query: (): any => ({
 				url: `producto/index`,
 				method: "GET",
 			}),

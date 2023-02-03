@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./listaProductos.css";
 import { Link } from "react-router-dom";
 import { RiAddCircleLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { useGetProductsQuery } from "../../redux/api/api";
 import { RootState } from "../../redux/app/store";
-import Productos from "./Productos";
+import { productT } from "../../redux/types/types";
+import Product from "./Product";
 
 function ListaProductos() {
-	const token = useSelector((state: RootState) => state.auth.token);
-	if (token !== "") {
-		console.log(token);
-		const data = useGetProductsQuery(null);
-		console.log(data);
-	}
+	const { data, isError, error, isLoading } = useGetProductsQuery();
+	const [products, setProducts] = useState<productT[]>([]);
+
+	useEffect(() => {
+		if (isLoading) {
+			console.log("loading..");
+		} else {
+			if (isError) {
+				console.log(error);
+			} else {
+				setProducts(data.data);
+			}
+		}
+	}, [isLoading]);
+
+	const recorrerProductos = () => {};
 
 	return (
 		<section className="product-list mt-12 h-full flex flex-col">
@@ -30,7 +41,11 @@ function ListaProductos() {
 				className="product-list__container flex pt-10 justify-center
 			 gap-12 h-full w-full"
 			>
-				<Productos />
+				<div className="products w-[80%] grid grid-cols-3 ">
+					{products.map((product) => {
+						return <Product product={product} key={product.id} />;
+					})}
+				</div>
 			</div>
 		</section>
 	);
