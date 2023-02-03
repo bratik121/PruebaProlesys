@@ -9,11 +9,36 @@ import { truncate } from "../../utils/functions";
 import Button from "../../elements/Button";
 import Input from "../../elements/Input";
 import "./login.css";
+import { useGetLoginMutation } from "../../redux/api/api";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../redux/features/authSlice";
+import { userT, loginT } from "../../redux/types/types";
 
 function Login() {
 	const usuario = useInput();
 	const contraseña = useInput();
 	const navigate = useNavigate();
+
+	const dispatch = useDispatch();
+	const [userLogin] = useGetLoginMutation();
+	const logIn = async (usuario: string, password: string) => {
+		const login: loginT = {
+			usuario: usuario,
+			password: password,
+		};
+		const respuesta: any = await userLogin(login);
+		const data = respuesta.data;
+		if (data.code === 1000) {
+			console.log(data.data.nombre, data.token);
+			const user: userT = {
+				nombre: data.data.nombre,
+				token: data.token,
+			};
+			dispatch(setToken(user));
+		} else {
+			console.log(data.message);
+		}
+	};
 
 	const handleExit = () => {
 		navigate("/");
@@ -24,7 +49,7 @@ function Login() {
 		flags += validateUsuario(usuario);
 		flags += validateContraseña(contraseña);
 		if (flags === 0) {
-			console.log("Todo bien");
+			logIn(usuario.input, contraseña.input);
 			truncate(usuario);
 			truncate(contraseña);
 		}
