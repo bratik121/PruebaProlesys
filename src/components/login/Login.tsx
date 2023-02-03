@@ -8,20 +8,26 @@ import { validateUsuario, validateContraseña } from "../../utils/validations";
 import { truncate } from "../../utils/functions";
 import Button from "../../elements/Button";
 import Input from "../../elements/Input";
+import Spinner from "../../elements/Spinner";
 import "./login.css";
+import { RootState } from "../../redux/app/store";
 import { useGetLoginMutation } from "../../redux/api/api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../redux/features/authSlice";
 import { userT, loginT } from "../../redux/types/types";
 
 function Login() {
+	const [loading, setLoading] = React.useState(false);
+	const [loginError, setLoginError] = React.useState("");
 	const usuario = useInput();
 	const contraseña = useInput();
 	const navigate = useNavigate();
-
 	const dispatch = useDispatch();
 	const [userLogin] = useGetLoginMutation();
+
+	//funcion para iniciar sesion
 	const logIn = async (usuario: string, password: string) => {
+		setLoading(true);
 		const login: loginT = {
 			usuario: usuario,
 			password: password,
@@ -35,11 +41,14 @@ function Login() {
 				token: data.token,
 			};
 			dispatch(setToken(user));
+			navigate("/");
 		} else {
-			console.log(data.message);
+			setLoginError(data.message);
 		}
+		setLoading(false);
 	};
 
+	//salir del modal
 	const handleExit = () => {
 		navigate("/");
 	};
@@ -79,24 +88,28 @@ function Login() {
 					</div>
 				</div>
 				{/* Inputs del modal */}
-				<div className="login__input flex flex-col gap-6 ">
-					<Input
-						label="Usuario"
-						error={usuario.error}
-						name="usuario"
-						inputText={usuario.input}
-						setInputText={usuario.setInput}
-						refe={usuario.ref}
-					/>
-					<Input
-						label="Contraseña"
-						error={contraseña.error}
-						name="contraseña"
-						inputText={contraseña.input}
-						setInputText={contraseña.setInput}
-						refe={contraseña.ref}
-					/>
-				</div>
+				{loading && <Spinner />}
+				{!loading && (
+					<div className="login__input flex flex-col gap-6 ">
+						<Input
+							label="Usuario"
+							error={usuario.error}
+							name="usuario"
+							inputText={usuario.input}
+							setInputText={usuario.setInput}
+							refe={usuario.ref}
+						/>
+						<Input
+							label="Contraseña"
+							error={contraseña.error}
+							name="contraseña"
+							inputText={contraseña.input}
+							setInputText={contraseña.setInput}
+							refe={contraseña.ref}
+						/>
+						<p>{loginError}</p>
+					</div>
+				)}
 				{/* Boton del modal */}
 				<div className="footer w-full flex flex-col items-center gap-2 mt-2 	">
 					<Button label="Iniciar Sesion" onClick={handleClick} />
