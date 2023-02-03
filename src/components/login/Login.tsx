@@ -10,11 +10,11 @@ import Button from "../../elements/Button";
 import Input from "../../elements/Input";
 import Spinner from "../../elements/Spinner";
 import "./login.css";
-import { RootState } from "../../redux/app/store";
 import { useGetLoginMutation } from "../../redux/api/api";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setToken } from "../../redux/features/authSlice";
 import { userT, loginT } from "../../redux/types/types";
+import { setLog } from "../../redux/features/logInSlice";
 
 function Login() {
 	const [loading, setLoading] = React.useState(false);
@@ -41,6 +41,7 @@ function Login() {
 				token: data.token,
 			};
 			dispatch(setToken(user));
+			dispatch(setLog(true));
 			navigate("/");
 		} else {
 			setLoginError(data.message);

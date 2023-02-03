@@ -1,10 +1,25 @@
-import React from "react";
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { BiLogOut } from "react-icons/bi";
 import "./nav.css";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../redux/app/store";
+import { setLog } from "../../redux/features/logInSlice";
+import { removeToken } from "../../redux/features/authSlice";
 import Button from "../../elements/Button";
 import NavInput from "./NavInput";
 
 function Nav() {
+	const { loged } = useSelector((state: RootState) => state.logIn);
+	const { user } = useSelector((state: RootState) => state.auth);
+	const dispatch = useDispatch();
+
+	const handleClick = () => {};
+	const logOut = () => {
+		dispatch(removeToken());
+		dispatch(setLog(false));
+	};
+
 	return (
 		<nav className=" flex h-12 fixed w-full items-center justify-around z-10 ">
 			{/* Logo nac */}
@@ -23,17 +38,34 @@ function Nav() {
 				>
 					Lista de productos
 				</NavLink>
-				<div className="buttons flex items-center w-[50%] justify-center gap-8">
-					<NavLink
-						to="/login"
-						className="nav__link text-blanco hover:underline hover:text-moradoclaro transition duration-300"
-					>
-						inicar sesion
-					</NavLink>
-					<NavLink to="/register" className="">
-						<Button label="registrarse" />
-					</NavLink>
-				</div>
+				{!loged && (
+					<>
+						{/* Botones */}
+						<div className="buttons flex items-center w-[50%] justify-center gap-8">
+							<NavLink
+								to="/login"
+								className="nav__link text-blanco hover:underline hover:text-moradoclaro transition duration-300"
+							>
+								inicar sesion
+							</NavLink>
+							<NavLink to="/register" className="">
+								<Button label="registrarse" onClick={handleClick} />
+							</NavLink>
+						</div>
+					</>
+				)}
+				{loged && (
+					<div className=" flex justify-center w-[50%] items-center gap-6">
+						<div className="flex items-center gap-1 text-xl">
+							<MdOutlineAccountCircle className="" />
+							<p>{user}</p>
+						</div>
+						<BiLogOut
+							className="text-2xl hover:text-blanco transition duration-300 hover:cursor-pointer"
+							onClick={logOut}
+						/>
+					</div>
+				)}
 			</ul>
 		</nav>
 	);
