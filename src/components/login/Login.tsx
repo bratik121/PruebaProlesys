@@ -3,7 +3,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { useNavigate, Link } from "react-router-dom";
 import { motion as m } from "framer-motion";
-import { useInput } from "../../hooks/hooks";
+import { useInput, useLoading } from "../../hooks/hooks";
 import { validateUsuario, validateContraseña } from "../../utils/validations";
 import { truncate } from "../../utils/functions";
 import Button from "../../elements/Button";
@@ -17,8 +17,7 @@ import { userT, loginT } from "../../redux/types/types";
 import { setLog } from "../../redux/features/logInSlice";
 
 function Login() {
-	const [loading, setLoading] = React.useState(false);
-	const [loginError, setLoginError] = React.useState("");
+	const loginLoading = useLoading();
 	const usuario = useInput();
 	const contraseña = useInput();
 	const navigate = useNavigate();
@@ -27,7 +26,7 @@ function Login() {
 
 	//funcion para iniciar sesion
 	const logIn = async (usuario: string, password: string) => {
-		setLoading(true);
+		loginLoading.setLoading(true);
 		const login: loginT = {
 			usuario: usuario,
 			password: password,
@@ -35,7 +34,6 @@ function Login() {
 		const respuesta: any = await userLogin(login);
 		const data = respuesta.data;
 		if (data.code === 1000) {
-			console.log(data.data.nombre, data.token);
 			const user: userT = {
 				nombre: data.data.nombre,
 				token: data.token,
@@ -44,9 +42,9 @@ function Login() {
 			dispatch(setLog(true));
 			navigate("/");
 		} else {
-			setLoginError(data.message);
+			loginLoading.setMessage(data.message);
 		}
-		setLoading(false);
+		loginLoading.setLoading(false);
 	};
 
 	//salir del modal
@@ -89,8 +87,8 @@ function Login() {
 					</div>
 				</div>
 				{/* Inputs del modal */}
-				{loading && <Spinner />}
-				{!loading && (
+				{loginLoading.loading && <Spinner />}
+				{!loginLoading.loading && (
 					<div className="login__input flex flex-col gap-6 ">
 						<Input
 							label="Usuario"
@@ -108,7 +106,7 @@ function Login() {
 							setInputText={contraseña.setInput}
 							refe={contraseña.ref}
 						/>
-						<p>{loginError}</p>
+						<p>{loginLoading.message}</p>
 					</div>
 				)}
 				{/* Boton del modal */}

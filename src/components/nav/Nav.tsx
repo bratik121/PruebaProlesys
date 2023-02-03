@@ -1,7 +1,7 @@
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
 import "./nav.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/app/store";
 import { setLog } from "../../redux/features/logInSlice";
@@ -13,9 +13,11 @@ function Nav() {
 	const { loged } = useSelector((state: RootState) => state.logIn);
 	const { user } = useSelector((state: RootState) => state.auth);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleClick = () => {};
 	const logOut = () => {
+		navigate("/");
 		dispatch(removeToken());
 		dispatch(setLog(false));
 	};
@@ -33,7 +35,7 @@ function Nav() {
 			{/* Links y botones del nav */}
 			<ul className="links flex w-[40%] justify-end items-center gap-16  ">
 				<NavLink
-					to="/productlist"
+					to={loged ? "/productlist" : "/login"}
 					className="nav__link text-blanco hover:underline hover:text-moradoclaro transition duration-300"
 				>
 					Lista de productos

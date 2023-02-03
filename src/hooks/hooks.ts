@@ -11,3 +11,14 @@ export const useInput = () => {
 		setError,
 	};
 };
+
+export const useLoading = () => {
+	const [loading, setLoading] = React.useState(false);
+	const [message, setMessage] = React.useState("");
+	return {
+		loading,
+		setLoading,
+		message,
+		setMessage,
+	};
+};
