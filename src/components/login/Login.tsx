@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { useNavigate, Link } from "react-router-dom";

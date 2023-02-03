@@ -39,3 +39,26 @@ export type productT = {
 		}
 	];
 };
+
+export type newProductT = {
+	codigo: string;
+	descripcion: string;
+	categoria: [
+		{
+			categoria_id: number;
+		}
+	];
+	detalle_producto: [
+		{
+			descripcion: string;
+			stock: number;
+			precio: number;
+		}
+	];
+};
+
+export type categoryT = {
+	id: string;
+	descripcion: string;
+	activo: true;
+};

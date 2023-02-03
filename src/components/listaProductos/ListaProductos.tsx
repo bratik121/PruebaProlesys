@@ -7,6 +7,7 @@ import { useGetProductsQuery } from "../../redux/api/api";
 import { RootState } from "../../redux/app/store";
 import { productT } from "../../redux/types/types";
 import Product from "./Product";
+import Spinner from "../../elements/Spinner";
 
 function ListaProductos() {
 	const { data, isError, error, isLoading } = useGetProductsQuery();
@@ -14,7 +15,6 @@ function ListaProductos() {
 
 	useEffect(() => {
 		if (isLoading) {
-			console.log("loading..");
 		} else {
 			if (isError) {
 				console.log(error);
@@ -41,11 +41,14 @@ function ListaProductos() {
 				className="product-list__container flex pt-10 justify-center
 			 gap-12 h-full w-full"
 			>
-				<div className="products w-[80%] grid grid-cols-3 ">
-					{products.map((product) => {
-						return <Product product={product} key={product.id} />;
-					})}
-				</div>
+				{!isLoading && (
+					<div className="products w-[80%] grid grid-cols-3 ">
+						{products.map((product) => {
+							return <Product product={product} key={product.id} />;
+						})}
+					</div>
+				)}
+				{isLoading && <Spinner />}
 			</div>
 		</section>
 	);

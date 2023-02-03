@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../app/store";
-import { loginT, registerT } from "../types/types";
+import { loginT, registerT, newProductT } from "../types/types";
 
 export const apiSlice: any = createApi({
 	reducerPath: "api",
@@ -15,6 +15,7 @@ export const apiSlice: any = createApi({
 			return headers;
 		},
 	}), //wrapper del rtk-query para fetch (es como axios)
+	tagTypes: ["Api"],
 	endpoints: (builder) => ({
 		getUsers: builder.query({
 			query: () => ({
@@ -34,6 +35,7 @@ export const apiSlice: any = createApi({
 				url: `producto/index`,
 				method: "GET",
 			}),
+			providesTags: ["Api"],
 		}),
 		addUser: builder.mutation({
 			query: (user: registerT): any => ({
@@ -41,6 +43,20 @@ export const apiSlice: any = createApi({
 				method: "POST",
 				body: user,
 			}),
+		}),
+		getCategories: builder.query({
+			query: (): any => ({
+				url: `producto/categoria/index`,
+				method: "GET",
+			}),
+		}),
+		addProduct: builder.mutation({
+			query: (product: newProductT): any => ({
+				url: "producto/create",
+				method: "POST",
+				body: product,
+			}),
+			invalidatesTags: ["Api"],
 		}),
 	}),
 });
@@ -50,4 +66,6 @@ export const {
 	useGetLoginMutation,
 	useGetProductsQuery,
 	useAddUserMutation,
+	useAddProductMutation,
+	useGetCategoriesQuery,
 } = apiSlice;
