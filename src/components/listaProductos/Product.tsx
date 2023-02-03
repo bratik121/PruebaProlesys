@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 function Product({ product }: { product: productT }) {
 	const navigate = useNavigate();
-	const handleEdit = (id: number) => {
-		console.log(id);
+	const handleEdit = (productId: number) => {
+		navigate(`/productform/modify/${productId}`);
 	};
 	return (
 		<div className="product__card h-[400px] w-[300px] border border-morado-500 rounded-md p-6 my-4">

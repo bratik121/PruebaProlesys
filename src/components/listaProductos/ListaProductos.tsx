@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import "./listaProductos.css";
 import { Link } from "react-router-dom";
 import { RiAddCircleLine } from "react-icons/ri";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useGetProductsQuery } from "../../redux/api/api";
 import { RootState } from "../../redux/app/store";
 import { productT } from "../../redux/types/types";
 import Product from "./Product";
 import Spinner from "../../elements/Spinner";
+import { setProducts as setProductsS } from "../../redux/features/productSlice";
 
 function ListaProductos() {
 	const { data, isError, error, isLoading } = useGetProductsQuery();
 	const [products, setProducts] = useState<productT[]>([]);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (isLoading) {
@@ -20,11 +22,10 @@ function ListaProductos() {
 				console.log(error);
 			} else {
 				setProducts(data.data);
+				dispatch(setProductsS(data.data));
 			}
 		}
 	}, [isLoading]);
-
-	const recorrerProductos = () => {};
 
 	return (
 		<section className="product-list mt-12 h-full flex flex-col">

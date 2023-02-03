@@ -58,6 +58,14 @@ export const apiSlice: any = createApi({
 			}),
 			invalidatesTags: ["Api"],
 		}),
+		updateProduct: builder.mutation({
+			query: (product: newProductT): any => ({
+				url: "producto/edit",
+				method: "POST",
+				body: product,
+			}),
+			invalidatesTags: ["Api"],
+		}),
 	}),
 });
 
@@ -68,4 +76,5 @@ export const {
 	useAddUserMutation,
 	useAddProductMutation,
 	useGetCategoriesQuery,
+	useUpdateProductMutation,
 } = apiSlice;

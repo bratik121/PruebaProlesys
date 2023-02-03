@@ -18,6 +18,10 @@ function App() {
 				<Route path="/register" element={<Register />} />
 				<Route path="/productlist" element={<ListaProductos />} />
 				<Route path="/productform" element={<FormProducto />} />
+				<Route
+					path="/productform/modify/:productId"
+					element={<FormProducto />}
+				/>
 			</Routes>
 		</div>
 	);
