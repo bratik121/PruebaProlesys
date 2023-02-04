@@ -9,7 +9,9 @@ Desarrollado por:
 ## ¿Como compilar el proyecto?
 
 1.  Creamos una carpeta nueva:
-    ![enter image description here](https://i.imgur.com/gPG5d8L.png)
+
+    ![Creado carpeta](https://i.imgur.com/gPG5d8L.png)
+
 2.  Clonamos el repositior:
     > En el ejemplo utilizaremos la terminal de Visual Studio Code
 
@@ -17,7 +19,7 @@ Desarrollado por:
   ```
   git clone https://github.com/pcca23/TEST-BRYANT-MITCHELL.git
   ```
-  ![enter image description here](https://i.imgur.com/a45lmcX.png)
+  ![Clonando repo](https://i.imgur.com/a45lmcX.png)
 
 3.  Nos ubicamos en lla carpeta **TEST-BRYANT-MITCHELL**
 
@@ -25,7 +27,7 @@ Desarrollado por:
   ```
   cd TEST-BRYANT-MITCHELL
   ```
-  ![enter image description here](https://i.imgur.com/q7I7Vab.png)
+  ![moviendome a la carpeta](https://i.imgur.com/q7I7Vab.png)
 
 4.  Instalamos los modulos de node:
 
@@ -33,7 +35,7 @@ Desarrollado por:
   ```
   npm i node-modules
   ```
-  ![enter image description here](https://i.imgur.com/KtuPQNX.png)
+  ![paquetes node instalados](https://i.imgur.com/KtuPQNX.png)
 
 5. Ejecutamos el proyecto:
 
@@ -41,11 +43,11 @@ Desarrollado por:
   ```
   npm run dev
   ```
-  ![enter image description here](https://i.imgur.com/7w4QQRz.png)
+  ![ejecutando el modo desarrollador vite](https://i.imgur.com/7w4QQRz.png)
 
 6. Abrimos el enlace y listo:
 
-![enter image description here](https://i.imgur.com/4NT87nV.png)
+![pagina web](https://i.imgur.com/4NT87nV.png)
 
 ## Configuracion e instalacion de las diferentes librerias y frameworks
 
