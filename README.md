@@ -9,9 +9,7 @@ Desarrollado por:
 ## ¿Como compilar el proyecto?
 
 1.  Creamos una carpeta nueva:
-
-    ![Creado carpeta](https://i.imgur.com/gPG5d8L.png)
-
+    ![enter image description here](https://i.imgur.com/gPG5d8L.png)
 2.  Clonamos el repositior:
     > En el ejemplo utilizaremos la terminal de Visual Studio Code
 
@@ -19,7 +17,7 @@ Desarrollado por:
   ```
   git clone https://github.com/pcca23/TEST-BRYANT-MITCHELL.git
   ```
-  ![Clonando repo](https://i.imgur.com/a45lmcX.png)
+  ![enter image description here](https://i.imgur.com/a45lmcX.png)
 
 3.  Nos ubicamos en lla carpeta **TEST-BRYANT-MITCHELL**
 
@@ -27,7 +25,7 @@ Desarrollado por:
   ```
   cd TEST-BRYANT-MITCHELL
   ```
-  ![moviendome a la carpeta](https://i.imgur.com/q7I7Vab.png)
+  ![enter image description here](https://i.imgur.com/q7I7Vab.png)
 
 4.  Instalamos los modulos de node:
 
@@ -35,7 +33,7 @@ Desarrollado por:
   ```
   npm i node-modules
   ```
-  ![paquetes node instalados](https://i.imgur.com/KtuPQNX.png)
+  ![enter image description here](https://i.imgur.com/KtuPQNX.png)
 
 5. Ejecutamos el proyecto:
 
@@ -43,11 +41,11 @@ Desarrollado por:
   ```
   npm run dev
   ```
-  ![ejecutando el modo desarrollador vite](https://i.imgur.com/7w4QQRz.png)
+  ![enter image description here](https://i.imgur.com/7w4QQRz.png)
 
 6. Abrimos el enlace y listo:
 
-![pagina web](https://i.imgur.com/4NT87nV.png)
+![enter image description here](https://i.imgur.com/4NT87nV.png)
 
 ## Configuracion e instalacion de las diferentes librerias y frameworks
 
@@ -109,3 +107,31 @@ Desarrollado por:
   ```
   npm install @reduxjs/toolkit react-redux
   ```
+
+## Carpetas y archivos
+
+Clasificación y descripción de las carpetas.
+
+### Components
+
+- En esta carpeta encontraremos todas las interfaces clasificadas por carpetas, en las mismas tendremos a la interfaz, su archivo css y los elementos que seas **propios** a dicha interfaz
+  > No todas las interfaces tiene elementos propios
+
+### Elements
+
+- En esta carpeta encontraremos todos los elementos que no son propios a una interfaz
+  - _Botones, inputs, spinners, etc..._
+
+### Hooks
+
+- En esta carpeta tendremos todos los custom hooks que se utilizaron en el proyecto
+
+### Redux
+
+- En esta carpeta encapsulamos todo el contenido que tiene que ver con redux y la arquitectura de los datos del proyecto
+  - _La store, los diversos slices, los endpoinst y los types utilizados_
+
+### Utils
+
+- En estar carpeta encontraremos algunas de las funciones que se utilizaron en el proyecto.
+  - _Validaciones, generadores, ect.._
