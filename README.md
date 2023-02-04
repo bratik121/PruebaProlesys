@@ -6,6 +6,47 @@ Desarrollado por:
 
 - [Bryant Mckale Mtichell Cisneros](https://github.com/bratik121)
 
+## ¿Como compilar el proyecto?
+
+1.  Creamos una carpeta nueva:
+    ![enter image description here](https://i.imgur.com/gPG5d8L.png)
+2.  Clonamos el repositior:
+    > En el ejemplo utilizaremos la terminal de Visual Studio Code
+
+- Comando para clonar:
+  ```
+  git clone https://github.com/pcca23/TEST-BRYANT-MITCHELL.git
+  ```
+  ![enter image description here](https://i.imgur.com/a45lmcX.png)
+
+3.  Nos ubicamos en lla carpeta **TEST-BRYANT-MITCHELL**
+
+- Comando:
+  ```
+  cd TEST-BRYANT-MITCHELL
+  ```
+  ![enter image description here](https://i.imgur.com/q7I7Vab.png)
+
+4.  Instalamos los modulos de node:
+
+- Comando:
+  ```
+  npm i node-modules
+  ```
+  ![enter image description here](https://i.imgur.com/KtuPQNX.png)
+
+5. Ejecutamos el proyecto:
+
+- Comando:
+  ```
+  npm run dev
+  ```
+  ![enter image description here](https://i.imgur.com/7w4QQRz.png)
+
+6. Abrimos el enlace y listo:
+
+![enter image description here](https://i.imgur.com/4NT87nV.png)
+
 ## Configuracion e instalacion de las diferentes librerias y frameworks
 
 ### Vitejs
