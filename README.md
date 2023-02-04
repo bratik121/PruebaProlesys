@@ -35,13 +35,17 @@ Desarrollado por:
 
   Instalación:
 
-  `npm install react-icons --save`
+  ```
+  npm install react-icons --save
+  ```
 
 - Para las animaciones se implemento [framer motion](https://www.framer.com/motion/?utm_source=google&utm_medium=adwords&utm_campaign=TW-WW-All-GS-UA-Traffic-20190326-Brand.Bmm_), dicha librería nos facilitara la tarea de crear las animaciones.
 
   instalacion:
 
-  `npm i framer-motion`
+  ```
+  npm i framer-motion
+  ```
 
 ### Enrutamiento
 
@@ -49,7 +53,9 @@ Desarrollado por:
 
   Instalación:
 
-  `npm install react-router-dom@6`
+  ```
+  npm install react-router-dom@6
+  ```
 
 ### Redux Toolkit Kit Query
 
@@ -57,4 +63,6 @@ Desarrollado por:
 
   Instalación:
 
-  `npm install @reduxjs/toolkit react-redux`
+  ```
+  npm install @reduxjs/toolkit react-redux
+  ```
