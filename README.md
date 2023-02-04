@@ -9,7 +9,11 @@ Desarrollado por:
 ## ¿Como compilar el proyecto?
 
 1.  Creamos una carpeta nueva:
-    ![enter image description here](https://i.imgur.com/gPG5d8L.png)
+
+> En el ejemplo carpeta creada es clonando repo
+
+![enter image description here](https://i.imgur.com/gPG5d8L.png)
+
 2.  Clonamos el repositior:
     > En el ejemplo utilizaremos la terminal de Visual Studio Code
 
