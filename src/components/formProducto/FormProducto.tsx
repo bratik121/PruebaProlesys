@@ -4,7 +4,7 @@ import Button from "../../elements/Button";
 import Input from "../../elements/Input";
 import { useInput, useLoading } from "../../hooks/hooks";
 import { validateNumber, validateProduct } from "../../utils/validations";
-import { truncate, getCode } from "../../utils/functions";
+import { truncate, getCode, setInput } from "../../utils/functions";
 import {
 	useGetCategoriesQuery,
 	useAddProductMutation,
@@ -46,17 +46,10 @@ function FormProducto() {
 					const product = products.find((prod) => prod.id === productId);
 					if (product) {
 						setCodigo(product.codigo);
-						nombre.setInput(product.descripcion);
-						nombre.ref.current!.value = product.descripcion;
-						descripcion.setInput(product.detalle_productos[0].descripcion);
-						descripcion.ref.current!.value =
-							product.detalle_productos[0].descripcion;
-						cantidad.setInput("" + product.detalle_productos[0].stock);
-						cantidad.ref.current!.value =
-							"" + product.detalle_productos[0].stock;
-						precio.setInput("" + product.detalle_productos[0].precio);
-						precio.ref.current!.value =
-							"" + product.detalle_productos[0].precio;
+						setInput(nombre, product.descripcion);
+						setInput(descripcion, product.detalle_productos[0].descripcion);
+						setInput(cantidad, "" + product.detalle_productos[0].stock);
+						setInput(precio, "" + product.detalle_productos[0].precio);
 						categoria.current!.value =
 							product.productos_categorias[0].categoria_id;
 					}

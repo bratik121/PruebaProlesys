@@ -10,7 +10,7 @@ import FormProducto from "./components/formProducto/FormProducto";
 
 function App() {
 	return (
-		<div className="App bg-negro text-morado-500 w-screen h-screen overflow-x-hidden">
+		<div className="App bg-blanco text-negro-500 w-screen h-screen overflow-x-hidden">
 			<Nav />
 			<Routes>
 				<Route path="/" element={<Main />} />

@@ -16,10 +16,10 @@ function Input({
 	refe: React.RefObject<HTMLInputElement>;
 }) {
 	return (
-		<div className="inputBox bg-negro">
+		<div className="inputBox bg-blanco">
 			<input
 				type="text"
-				className={`bg-negro border border-morado-500 ${
+				className={`bg-negro border border-verde-500 ${
 					inputText === "" ? "" : "inUse"
 				} text-moradoclaro`}
 				name={name}
@@ -28,8 +28,8 @@ function Input({
 				}}
 				ref={refe}
 			/>
-			<span className="text-blanco">{label}</span>
-			<p className="mt-1">{error}</p>
+			<span className="text-negro-500">{label}</span>
+			<p className="mt-1 text-negro-500">{error}</p>
 		</div>
 	);
 }

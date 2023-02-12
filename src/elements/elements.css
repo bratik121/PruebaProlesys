@@ -1,8 +1,11 @@
 /**Boton*/
 
 .Button {
-	background-color: #826aed;
 	transition: ease-in 0.2s;
+}
+
+.Button.primary {
+	transition: ease-in all 0.3s;
 }
 
 .Button:hover {

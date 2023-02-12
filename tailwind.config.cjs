@@ -4,14 +4,17 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				negro: "#06070E",
-				blanco: "#F2F2F2",
-				morado: {
-					500: "#826AED",
-					700: "#705bcf",
+				negro: {
+					500: "#000807",
 				},
-				moradoclaro: "#C879FF",
-				naranja: "#FF6542",
+				blanco: "#fefffe",
+				verde: {
+					300: "#4FA172",
+					500: "#1A894A",
+					700: "#154434",
+				},
+				verdeclaro: "#399e5a",
+				amarillo: "#FFBA08",
 			},
 		},
 	},

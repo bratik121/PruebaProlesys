@@ -1,9 +1,21 @@
 import React from "react";
 import "./elements.css";
-function Button({ label, onClick }: { label: string; onClick: () => void }) {
+function Button({
+	label,
+	onClick,
+	primary,
+}: {
+	label: string;
+	onClick: () => void;
+	primary: boolean;
+}) {
 	return (
 		<div
-			className="Button py-2 px-3 text-negro hover:text-morado-500 rounded-md hover:cursor-pointer w-full text-center"
+			className={`Button py-2 px-3 rounded-md hover:cursor-pointer w-full text-center ${
+				primary
+					? "primary bg-amarillo hover:bg-negro-500 hover:text-amarillo"
+					: "text-negro-500 bg-verde-500 hover:bg-verde-300"
+			}`}
 			onClick={onClick}
 		>
 			{label}

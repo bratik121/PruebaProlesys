@@ -12,3 +12,8 @@ export const getCode = (max: number): number => {
 		return code;
 	}
 };
+
+export const setInput = (inputHook: any, value: string) => {
+	inputHook.ref.current!.value = value;
+	inputHook.setInput(value);
+};
