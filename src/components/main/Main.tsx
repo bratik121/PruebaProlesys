@@ -7,18 +7,18 @@ function Main() {
 	return (
 		<main className="mt-12 flex w-full h-[93%] ">
 			<div className="main__left w-1/2 flex justify-center items-center">
-				<div className="content flex flex-col w-[60%] gap-6">
+				<div className="content flex flex-col w-[60%] gap-6 px-4 -translate-y-11 translate-x-10">
 					<div className="content__top">
-						<h1 className="main__title text-4xl font-bold  text-verde-700">
+						<h1 className="main__title text-6xl font-bold  text-verde-700">
 							Productos
 						</h1>
-						<h1 className="main__title text-4xl font-bold  text-verde-700">
+						<h1 className="main__title text-3xl font-bold  text-verde-700">
 							a un click
 						</h1>
 						<h1 className="main__title text-4xl font-bold  text-verde-700">
 							de
 						</h1>
-						<h1 className="main__title text-4xl font-bold  text-verde-700">
+						<h1 className="main__title text-5xl font-bold  text-verde-700">
 							Distancia
 						</h1>
 					</div>
@@ -32,9 +32,9 @@ function Main() {
 					</div>
 				</div>
 			</div>
-			<div className="main__right w-1/2 flex justify-center items-center">
-				<div className="main__img w-[60%]">
-					<img src={mainImg} alt="" className="w-full object-cover" />
+			<div className="main__right w-1/2 flex justify-center items-center relative">
+				<div className="main__img ">
+					<img src={mainImg} alt="" className="w-full  h-full object-cover" />
 				</div>
 			</div>
 		</main>

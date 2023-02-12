@@ -3,22 +3,36 @@
 }
 
 .main__img {
-	border-radius: 42% 58% 23% 77% / 46% 85% 15% 54%;
 	position: relative;
-	z-index: 200;
+	width: 20rem;
+	height: 18rem;
 }
-
 .main__img::before {
 	content: "";
-	top: 10px;
-	background-color: #1a894a;
-	z-index: 10;
+	background: url(../../assets/magicpattern-blob-1676169283344.svg);
+	width: 30%;
+	height: 30%;
+	right: -15%;
+	top: -8%;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: absolute;
+}
+
+.main__img::after {
+	content: "";
+	top: 5px;
+	background-color: #154229;
+	position: absolute;
 	width: 100%;
 	height: 100%;
-	position: absolute;
+	z-index: 10;
 	border-radius: 42% 58% 23% 77% / 46% 85% 15% 54%;
 }
 
 .main__img img {
+	position: absolute;
+	z-index: 30;
 	border-radius: 42% 58% 23% 77% / 46% 85% 15% 54%;
 }
