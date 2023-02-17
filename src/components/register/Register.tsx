@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./register.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "../../elements/Button";
 import Input from "../../elements/Input";
 import { useInput, useLoading } from "../../hooks/hooks";
@@ -11,9 +13,10 @@ import {
 } from "../../utils/validations";
 import { useAddUserMutation } from "../../redux/api/api";
 import { truncate } from "../../utils/functions";
-import { registerT } from "../../redux/types/types";
+import { registerT, popUpType } from "../../redux/types/types";
 import Spinner from "../../elements/Spinner";
 import { motion as m } from "framer-motion";
+import { setOpen } from "../../redux/features/popUpSlice";
 
 function Register() {
 	const nombre = useInput();
@@ -23,6 +26,8 @@ function Register() {
 	const email = useInput();
 	const [userRegister] = useAddUserMutation();
 	const registerLoading = useLoading();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const registerUser = async (
 		nombre: string,
@@ -41,8 +46,17 @@ function Register() {
 		};
 		const respuesta: any = await userRegister(register);
 		const data = respuesta.data;
-		registerLoading.setMessage(data.message);
 		registerLoading.setLoading(false);
+		if (data.code === 1000) {
+			const popUp: popUpType = {
+				message: "Usuario registrado con éxito!",
+				open: true,
+			};
+			dispatch(setOpen(popUp));
+			navigate("/");
+		} else {
+			registerLoading.setMessage(data.message);
+		}
 	};
 
 	const handleClick = () => {

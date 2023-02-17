@@ -69,3 +69,8 @@ export type overlayTypeContent = {
 	alter: string;
 	buttonText: string;
 };
+
+export type popUpType = {
+	open: boolean;
+	message: string;
+};

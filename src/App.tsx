@@ -5,13 +5,18 @@ import Main from "./components/main/Main";
 import ListaProductos from "./components/listaProductos/ListaProductos";
 import FormProducto from "./components/formProducto/FormProducto";
 import SignForm from "./components/signForm/SignForm";
-import Test from "./Test";
+import PopUp from "./elements/PopUp";
+import type { RootState } from "./redux/app/store";
+import { useSelector } from "react-redux";
 
 function App() {
+	const { open, message } = useSelector((state: RootState) => state.popUp);
 	return (
-		<div className="App bg-blanco text-negro-500 w-screen h-screen overflow-x-hidden">
+		<div className="App bg-blanco text-negro-500 w-screen h-screen overflow-x-hidden relative">
 			<Nav />
 			{/* <Test /> */}
+			{open && <PopUp message={message} />}
+			{true && <PopUp message="HOLAAAAAAA XDDD" />}
 			<Routes>
 				<Route path="/" element={<Main />} />
 				<Route path="/signForm/">
