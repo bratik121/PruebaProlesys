@@ -36,7 +36,6 @@ function FormProducto() {
 	const { data, isError, error, isLoading } = useGetCategoriesQuery();
 	useEffect(() => {
 		if (isLoading) {
-			console.log("loading..");
 		} else {
 			if (isError) {
 				console.log(error);
@@ -230,9 +229,15 @@ function FormProducto() {
 								{isLoading && <Spinner />}
 							</div>
 							<div className="w-[90%] flex justify-center ">
-								{!productId && <Button label="Añadir" onClick={handleAdd} />}
+								{!productId && (
+									<Button label="Añadir" onClick={handleAdd} primary={false} />
+								)}
 								{productId && (
-									<Button label="Modificar" onClick={handleModify} />
+									<Button
+										label="Modificar"
+										onClick={handleModify}
+										primary={false}
+									/>
 								)}
 							</div>
 						</>

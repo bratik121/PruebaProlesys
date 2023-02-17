@@ -14,7 +14,6 @@ function Nav() {
 	const navigate = useNavigate();
 
 	const handleClick = () => {
-		console.log("Register");
 		navigate("/signForm/register");
 	};
 	const logOut = () => {
@@ -67,13 +66,13 @@ function Nav() {
 							</>
 						)}
 						{loged && (
-							<div className=" flex justify-center w-[50%] items-center gap-6">
-								<div className="flex items-center gap-1 text-xl">
-									<MdOutlineAccountCircle className="" />
+							<div className=" flex justify-center w-[30%] items-center gap-6">
+								<div className="flex items-center gap-1 text-xl text-verde-500">
+									<MdOutlineAccountCircle className="text-2xl" />
 									<p>{user}</p>
 								</div>
 								<BiLogOut
-									className="text-2xl hover:text-blanco transition duration-300 hover:cursor-pointer"
+									className="text-2xl text-verde-500 hover:text-verde-300 transition duration-300 hover:cursor-pointer"
 									onClick={logOut}
 								/>
 							</div>

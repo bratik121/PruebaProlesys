@@ -1,5 +1,6 @@
 import "./App.css";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Nav from "./components/nav/Nav";
 import Main from "./components/main/Main";
 import ListaProductos from "./components/listaProductos/ListaProductos";
@@ -15,8 +16,7 @@ function App() {
 		<div className="App bg-blanco text-negro-500 w-screen h-screen overflow-x-hidden relative">
 			<Nav />
 			{/* <Test /> */}
-			{open && <PopUp message={message} />}
-			{true && <PopUp message="HOLAAAAAAA XDDD" />}
+			<AnimatePresence>{open && <PopUp message={message} />}</AnimatePresence>
 			<Routes>
 				<Route path="/" element={<Main />} />
 				<Route path="/signForm/">

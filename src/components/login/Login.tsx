@@ -1,6 +1,6 @@
-import { AiOutlineClose } from "react-icons/ai";
+import "./login.css";
 import { MdOutlineAccountCircle } from "react-icons/md";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { useInput, useLoading } from "../../hooks/hooks";
 import { validateUsuario, validateContraseña } from "../../utils/validations";
@@ -8,7 +8,6 @@ import { truncate } from "../../utils/functions";
 import Button from "../../elements/Button";
 import Input from "../../elements/Input";
 import Spinner from "../../elements/Spinner";
-import "./login.css";
 import { useGetLoginMutation } from "../../redux/api/api";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../redux/features/authSlice";

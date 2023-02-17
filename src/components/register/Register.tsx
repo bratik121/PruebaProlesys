@@ -1,22 +1,18 @@
-import React, { useState, useRef } from "react";
 import "./register.css";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { motion as m } from "framer-motion";
 import Button from "../../elements/Button";
 import Input from "../../elements/Input";
-import { useInput, useLoading } from "../../hooks/hooks";
+import Spinner from "../../elements/Spinner";
+import { useInput, useLoading, usePopUp } from "../../hooks/hooks";
 import {
 	validateText,
 	validateUsuario,
 	validateContraseña,
 	validateEmail,
 } from "../../utils/validations";
-import { useAddUserMutation } from "../../redux/api/api";
 import { truncate } from "../../utils/functions";
-import { registerT, popUpType } from "../../redux/types/types";
-import Spinner from "../../elements/Spinner";
-import { motion as m } from "framer-motion";
-import { setOpen } from "../../redux/features/popUpSlice";
+import { useAddUserMutation } from "../../redux/api/api";
+import { registerT } from "../../redux/types/types";
 
 function Register() {
 	const nombre = useInput();
@@ -26,8 +22,7 @@ function Register() {
 	const email = useInput();
 	const [userRegister] = useAddUserMutation();
 	const registerLoading = useLoading();
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	const registerPopUp = usePopUp("Usuario registrado con exito!");
 
 	const registerUser = async (
 		nombre: string,
@@ -48,12 +43,7 @@ function Register() {
 		const data = respuesta.data;
 		registerLoading.setLoading(false);
 		if (data.code === 1000) {
-			const popUp: popUpType = {
-				message: "Usuario registrado con éxito!",
-				open: true,
-			};
-			dispatch(setOpen(popUp));
-			navigate("/");
+			registerPopUp.execute();
 		} else {
 			registerLoading.setMessage(data.message);
 		}
@@ -84,10 +74,12 @@ function Register() {
 
 	return (
 		<div className="register__container flex flex-col items-center justify-center h-[80%] w-[85%] pt-6 ">
+			{/* Titulo del componente */}
 			<h1 className="register__title text-3xl text-center text-verde-700">
 				Regístrate
 			</h1>
 			<form className="register__form flex flex-col justify-between  pt-10 px-5 items-center w-full h-full ">
+				{/* Si no esta cargando, despliega el formulario para registrarse */}
 				{!registerLoading.loading && (
 					<div className="grid grid-cols-2 gap-2 w-[100%]  h-[80%]">
 						<Input
@@ -134,8 +126,15 @@ function Register() {
 						</div>
 					</div>
 				)}
-				{registerLoading.loading && <Spinner />}
+				{/* Si esta cargando, despliega el spinner */}
+				{registerLoading.loading && (
+					<div className="w-full h-[75%] flex items-center justify-center">
+						<Spinner />
+					</div>
+				)}
+				{/* En caso de error de la peticion, muestrala en el form */}
 				<p>{registerLoading.message}</p>
+				{/* Boton de submit */}
 				<m.div
 					className="w-[90%] flex justify-center "
 					whileHover={{ scale: 1.1 }}

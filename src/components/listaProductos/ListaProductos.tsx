@@ -8,7 +8,7 @@ import { RootState } from "../../redux/app/store";
 import { productT } from "../../redux/types/types";
 import Product from "./Product";
 import Spinner from "../../elements/Spinner";
-import { setProducts as setProductsS } from "../../redux/features/productSlice";
+import { setProducts as setProductsSlice } from "../../redux/features/productSlice";
 
 function ListaProductos() {
 	const { data, isError, error, isLoading } = useGetProductsQuery();
@@ -22,7 +22,7 @@ function ListaProductos() {
 				console.log(error);
 			} else {
 				setProducts(data.data);
-				dispatch(setProductsS(data.data));
+				dispatch(setProductsSlice(data.data));
 			}
 		}
 	}, [isLoading]);

@@ -11,14 +11,14 @@ const popUpSlice = createSlice({
 		setOpen: (state, action: PayloadAction<popUpType>) => {
 			state.open = action.payload.open;
 			state.message = action.payload.message;
-			setTimeout(() => {
-				state.open = false;
-				state.message = "";
-			}, 3000);
+		},
+		setClose: (state) => {
+			state.open = false;
+			state.message = "";
 		},
 	},
 });
 
-export const { setOpen } = popUpSlice.actions;
+export const { setOpen, setClose } = popUpSlice.actions;
 
 export default popUpSlice.reducer;
