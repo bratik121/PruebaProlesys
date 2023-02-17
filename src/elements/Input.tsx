@@ -19,17 +19,17 @@ function Input({
 		<div className="inputBox bg-blanco">
 			<input
 				type="text"
-				className={`bg-negro border border-verde-500 ${
+				className={`border border-verde-500 ${
 					inputText === "" ? "" : "inUse"
-				} text-moradoclaro`}
+				} text-negro-500`}
 				name={name}
 				onChange={(e) => {
 					setInputText(e.target.value);
 				}}
 				ref={refe}
 			/>
-			<span className="text-negro-500">{label}</span>
-			<p className="mt-1 text-negro-500">{error}</p>
+			<span className="text-negro-300">{label}</span>
+			<p className="mt-1 text-rojo-500">{error}</p>
 		</div>
 	);
 }

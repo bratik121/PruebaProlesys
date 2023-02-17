@@ -13,7 +13,6 @@ import { useGetLoginMutation } from "../../redux/api/api";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../redux/features/authSlice";
 import { userT, loginT } from "../../redux/types/types";
-import { setLog } from "../../redux/features/logInSlice";
 
 function Login() {
 	const loginLoading = useLoading();
@@ -38,17 +37,11 @@ function Login() {
 				token: data.token,
 			};
 			dispatch(setToken(user));
-			dispatch(setLog(true));
 			navigate("/");
 		} else {
 			loginLoading.setMessage(data.message);
 		}
 		loginLoading.setLoading(false);
-	};
-
-	//salir del modal
-	const handleExit = () => {
-		navigate("/");
 	};
 
 	const handleClick = () => {
@@ -63,28 +56,15 @@ function Login() {
 	};
 
 	return (
-		<m.div
-			className="modal-bg w-screen h-screen  bg-[rgba(100,100,100,0.3)] fixed bottom-0 z-50 flex items-center justify-center"
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-		>
+		<>
 			{/* Modal */}
-			<div className="modal h-[31rem] w-[21rem] bg-negro flex flex-col py-3 px-6 rounded-lg justify-around">
-				{/* Top modal */}
-				<div className="">
-					{/* Close tag */}
-					<div className="w-full flex justify-end ">
-						<AiOutlineClose
-							className="text-3xl hover:text-[color:#826AED86] hover:cursor-pointer transition duration-300"
-							onClick={handleExit}
-						/>
-					</div>
-					{/* Titulo del modal */}
-					<div className="title w-full text-center flex flex-col items-center ">
-						<MdOutlineAccountCircle className="text-8xl" />
-						<h1 className="text-2xl text-blanco">Iniciar sesion</h1>
-					</div>
+			<div className="login__container  w-[60%] h-[80%] bg-negro flex flex-col  justify-between">
+				{/* Titulo del modal */}
+				<div className="title w-full text-center flex flex-col items-center  ">
+					<MdOutlineAccountCircle className="text-8xl text-verde-700" />
+					<h1 className="text-2xl text-verde-700">Inicia sesion</h1>
 				</div>
+
 				{/* Inputs del modal */}
 				{loginLoading.loading && <Spinner />}
 				{!loginLoading.loading && (
@@ -105,21 +85,22 @@ function Login() {
 							setInputText={contraseña.setInput}
 							refe={contraseña.ref}
 						/>
-						<p>{loginLoading.message}</p>
+						<p className="text-rojo-700">{loginLoading.message}</p>
 					</div>
 				)}
 				{/* Boton del modal */}
-				<div className="footer w-full flex flex-col items-center gap-2 mt-2 	">
-					<Button label="Iniciar Sesion" onClick={handleClick} />
-					<Link
-						to="/register"
-						className="	 text-blanco hover:text-moradoclaro transition duration-300 relative"
-					>
-						Registrarse
-					</Link>
-				</div>
+				<m.div
+					className="footer w-full flex flex-col items-center gap-2"
+					whileHover={{ scale: 1.1 }}
+				>
+					<Button
+						label="Iniciar Sesion"
+						onClick={handleClick}
+						primary={false}
+					/>
+				</m.div>
 			</div>
-		</m.div>
+		</>
 	);
 }
 

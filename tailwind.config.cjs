@@ -5,6 +5,7 @@ module.exports = {
 		extend: {
 			colors: {
 				negro: {
+					300: "#2E282A",
 					500: "#000807",
 				},
 				blanco: "#fefffe",
@@ -15,6 +16,11 @@ module.exports = {
 				},
 				verdeclaro: "#399e5a",
 				amarillo: "#FFBA08",
+				gris: "#6C596E",
+				rojo: {
+					500: "#DB5461",
+					700: "#761922",
+				},
 			},
 		},
 	},

@@ -68,8 +68,8 @@ select {
 	display: flex;
 	margin: -25px 0 0 -25px;
 	border: 5px solid transparent;
-	border-top-color: #826aed;
-	border-bottom-color: #826aed;
+	border-top-color: #1a894a;
+	border-bottom-color: #1a894a;
 	border-radius: 50%;
 	animation: spin 1s linear infinite;
 }
@@ -82,7 +82,7 @@ select {
 	left: 5px;
 	bottom: 5px;
 	border: 5px solid transparent;
-	background: #826aed60;
+	background: #1a894a54;
 	border-radius: 50%;
 }
 

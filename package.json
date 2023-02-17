@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",
-    "framer-motion": "^9.0.0",
+    "framer-motion": "^9.0.3",
     "gh-pages": "^5.0.0",
-    "node-modules": "^1.0.1",
+    "node-modules": "^0.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",

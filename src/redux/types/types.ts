@@ -62,3 +62,10 @@ export type categoryT = {
 	descripcion: string;
 	activo: true;
 };
+
+export type overlayTypeContent = {
+	title: string;
+	content: string;
+	alter: string;
+	buttonText: string;
+};
