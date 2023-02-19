@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./listaProductos.css";
 import { Link } from "react-router-dom";
+import { motion as m, AnimatePresence } from "framer-motion";
 import { RiAddCircleLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { useGetProductsQuery } from "../../redux/api/api";
@@ -32,28 +33,31 @@ function ListaProductos() {
 	};
 
 	const handleFilter = (product: productT): boolean => {
-		if (currentCategory === "todos") {
+		if (
+			currentCategory === "miscelaneos" &&
+			product.productos_categorias[0] === undefined
+		) {
 			return true;
 		} else {
 			if (product.productos_categorias[0] === undefined) {
 				return false;
 			} else {
-				return (
-					product.productos_categorias[0].categoria.descripcion ===
-					currentCategory
-				);
+				if (currentCategory === "todos") {
+					return true;
+				} else {
+					return (
+						product.productos_categorias[0].categoria.descripcion ===
+						currentCategory
+					);
+				}
 			}
-			/* 	return (
-				product.productos_categorias[0].categoria.descripcion ===
-				currentCategory
-			);*/
-			return true;
 		}
 	};
 
 	return (
 		<section className="product-list mt-12 h-full flex flex-col">
-			<div className="product-lits__header h-12 flex w-[100%] items-center justify-end px-4">
+			{/* Header del container para añaidr productos */}
+			<div className="product-lits__header h-12 flex w-[100%] items-center justify-end px-4 py-3">
 				<Link
 					to="/productform"
 					className="flex items-center gap-2 hover:text-verde-300 transition duration-150"
@@ -62,23 +66,41 @@ function ListaProductos() {
 					<RiAddCircleLine className="text-xl" />
 				</Link>
 			</div>
+			{/* Contenedor de las categorias y las lista de los productos */}
 			<div
-				className="product-list__container flex pt-8 justify-center
-			  h-full w-full bg-blue-400"
+				className="product-list__container flex 
+			  h-full w-full"
 			>
+				{/* Contenedor de las categorias */}
 				<ListaCategorias handleCategory={handleCategory} />
+				{/*Si no esta cargando muestrame el Contedor de los productos */}
 				{!isLoading && (
-					<div className="products w-[80%] grid grid-cols-3  bg-red-300">
-						{products
-							.filter((product: productT) => {
-								return handleFilter(product);
-							})
-							.map((product) => {
-								return <Product product={product} key={product.id} />;
-							})}
+					<m.div
+						className="products w-[80%] grid grid-cols-3 justify-items-center"
+						initial={{ opacity: 0, y: 50 }}
+						animate={{ opacity: 1, y: 0 }}
+					>
+						<AnimatePresence>
+							{products
+								.filter((product: productT) => {
+									return handleFilter(product);
+								})
+								.map((product) => {
+									return (
+										<Product product={product} key={product.id} layout={true} />
+									);
+								})}
+						</AnimatePresence>
+					</m.div>
+				)}
+				{/* Si esta cargando muertrame el spinner */}
+				{isLoading && (
+					<div className="w-[80%]  flex	items-start justify-center pt-20 ">
+						<div>
+							<Spinner />
+						</div>
 					</div>
 				)}
-				{isLoading && <Spinner />}
 			</div>
 		</section>
 	);

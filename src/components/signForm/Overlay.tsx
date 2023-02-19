@@ -30,10 +30,10 @@ function Overlay({
 	const content = active ? registerContent : loginContent;
 
 	return (
-		<div
-			className={`sign__overlay ${
-				active ? "active" : ""
-			}  w-1/2 h-[100%] flex justify-center items-center absolute z-50`}
+		<m.div
+			className="sign__overlay w-1/2 h-[100%] flex justify-center items-center absolute z-50"
+			animate={{ x: active ? "100%" : "0%" }}
+			transition={{ duration: 0.7 }}
 		>
 			<div className="overlay w-[80%] h-[80%] flex flex-col justify-between items-center ">
 				{/* Titulo del overlay */}
@@ -50,6 +50,11 @@ function Overlay({
 								duration: 0.5,
 								repeatType: "reverse",
 							},
+						}}
+						transition={{
+							type: "tween",
+							ease: "easeInOut",
+							duration: 0.7,
 						}}
 						className=" w-[100px]  mt-2 flex justify-center"
 					>
@@ -68,7 +73,7 @@ function Overlay({
 					</m.div>
 				</div>
 			</div>
-		</div>
+		</m.div>
 	);
 }
 
