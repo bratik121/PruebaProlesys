@@ -22,7 +22,7 @@ function Nav() {
 	};
 
 	return (
-		<nav className=" flex h-12 fixed w-full items-center justify-around z-10  px-4 ">
+		<nav className=" flex h-12 fixed w-full items-center justify-around z-10  px-4 bg-blanco">
 			{/* Logo nac */}
 			<div className="logo w-[20%] flex justify-center items-center  ">
 				<h1

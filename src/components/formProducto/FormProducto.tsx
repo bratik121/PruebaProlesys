@@ -6,7 +6,6 @@ import { useInput, useLoading } from "../../hooks/hooks";
 import { validateNumber, validateProduct } from "../../utils/validations";
 import { truncate, getCode, setInput } from "../../utils/functions";
 import {
-	useGetCategoriesQuery,
 	useAddProductMutation,
 	useUpdateProductMutation,
 } from "../../redux/api/api";
@@ -15,7 +14,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { categoryT, newProductT } from "../../redux/types/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/app/store";
-import { RiNpmjsFill } from "react-icons/ri";
 
 function FormProducto() {
 	const nombre = useInput();
@@ -23,39 +21,29 @@ function FormProducto() {
 	const cantidad = useInput();
 	const precio = useInput();
 	const categoria = useRef<HTMLSelectElement>(null);
-	const [categories, setCategories] = useState<categoryT[]>([]);
 	const [addProduct] = useAddProductMutation();
 	const [updateProduct] = useUpdateProductMutation();
 	const formLoading = useLoading();
 	const { productId } = useParams();
 	const products = useSelector((state: RootState) => state.prodcts.products);
-
+	const categories = useSelector((state: RootState) => state.cats.categories);
 	const [codigo, setCodigo] = useState<string>("");
 
 	//trayendo las categorias
-	const { data, isError, error, isLoading } = useGetCategoriesQuery();
+
 	useEffect(() => {
-		if (isLoading) {
-		} else {
-			if (isError) {
-				console.log(error);
-			} else {
-				setCategories(data.data);
-				if (productId) {
-					const product = products.find((prod) => prod.id === productId);
-					if (product) {
-						setCodigo(product.codigo);
-						setInput(nombre, product.descripcion);
-						setInput(descripcion, product.detalle_productos[0].descripcion);
-						setInput(cantidad, "" + product.detalle_productos[0].stock);
-						setInput(precio, "" + product.detalle_productos[0].precio);
-						categoria.current!.value =
-							product.productos_categorias[0].categoria_id;
-					}
-				}
+		if (productId) {
+			const product = products.find((prod) => prod.id === productId);
+			if (product) {
+				setCodigo(product.codigo);
+				setInput(nombre, product.descripcion);
+				setInput(descripcion, product.detalle_productos[0].descripcion);
+				setInput(cantidad, "" + product.detalle_productos[0].stock);
+				setInput(precio, "" + product.detalle_productos[0].precio);
+				categoria.current!.value = product.productos_categorias[0].categoria_id;
 			}
 		}
-	}, [isLoading]);
+	}, []);
 
 	//
 
@@ -207,26 +195,24 @@ function FormProducto() {
 									setInputText={precio.setInput}
 									refe={precio.ref}
 								/>
-								{!isLoading && (
-									<div className="col-span-2 gap-2 flex flex-col">
-										<h5 className="text-blanco">Categoria</h5>
-										<select
-											name=""
-											id=""
-											className="w-full rounded px-2"
-											ref={categoria}
-										>
-											{categories.map((category) => {
-												return (
-													<option value={category.id} key={category.id}>
-														{category.descripcion}
-													</option>
-												);
-											})}
-										</select>
-									</div>
-								)}
-								{isLoading && <Spinner />}
+
+								<div className="col-span-2 gap-2 flex flex-col">
+									<h5 className="text-blanco">Categoria</h5>
+									<select
+										name=""
+										id=""
+										className="w-full rounded px-2"
+										ref={categoria}
+									>
+										{categories.map((category) => {
+											return (
+												<option value={category.id} key={category.id}>
+													{category.descripcion}
+												</option>
+											);
+										})}
+									</select>
+								</div>
 							</div>
 							<div className="w-[90%] flex justify-center ">
 								{!productId && (

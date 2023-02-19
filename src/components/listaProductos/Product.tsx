@@ -30,6 +30,7 @@ function Product({ product }: { product: productT }) {
 					onClick={() => {
 						handleEdit(Number(product.id));
 					}}
+					primary={false}
 				/>
 			</div>
 		</div>
