@@ -155,9 +155,9 @@ function FormProducto() {
 	};
 	return (
 		<section className="mt-12 h-full">
-			<div className="product-form__container flex flex-col items-center justify-center h-[80%]">
-				<h1 className="product-form__title text-3xl text-center font-bold text-blanco">
-					Añade un producto
+			<div className="product-form__container flex flex-col items-center justify-center h-[80%] text-negro-500">
+				<h1 className="product-form__title text-3xl text-center font-bold">
+					{`${productId ? "Modificar" : "Añadir"} Producto`}
 				</h1>
 				<form className="product-form__form flex flex-col gap-4 w-1/2 mt-8 border border-morado-500 rounded-md p-7 items-center">
 					{!formLoading.loading && (
@@ -197,11 +197,11 @@ function FormProducto() {
 								/>
 
 								<div className="col-span-2 gap-2 flex flex-col">
-									<h5 className="text-blanco">Categoria</h5>
+									<h5 className="">Categoria</h5>
 									<select
 										name=""
 										id=""
-										className="w-full rounded px-2"
+										className="w-full rounded px-2 border border-verde-500"
 										ref={categoria}
 									>
 										{categories.map((category) => {

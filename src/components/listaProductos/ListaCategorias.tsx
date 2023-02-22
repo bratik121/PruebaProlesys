@@ -30,10 +30,10 @@ function ListaCategorias({
 	}, [isLoading]);
 
 	const indicator = (t: HTMLLIElement) => {
-		if (marker) {
-			marker.current!.style.top = t.offsetTop + "px";
-			marker.current!.style.height = t.offsetHeight + "px";
-			marker.current!.style.width = t.offsetWidth + "px";
+		if (marker.current) {
+			marker.current.style.top = t.offsetTop + "px";
+			marker.current.style.height = t.offsetHeight + "px";
+			marker.current.style.width = t.offsetWidth + "px";
 		}
 	};
 
