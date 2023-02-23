@@ -10,6 +10,8 @@ export const validNumber = (number: string) => Number.isNaN(Number(number));
 
 export const validProduct = (product: string) =>
 	!product.match(/^([A-Za-z0-9ñ]\s*)+$/);
+export const validProductD = (productD: string) =>
+	!productD.match(/^[a-zA-Z0-9ñ,!.: ]*$/);
 
 /**Validaciones de Inputs */
 
@@ -94,7 +96,21 @@ export const validateProduct = (product: any) => {
 			return 0;
 		}
 	} else {
-		product.setError("Introduzca un valor!");
+		product.setError("Introduzca un Nombre!");
+		return 1;
+	}
+};
+export const validateProductD = (product: any) => {
+	if (notEmpty(product.input)) {
+		if (validProductD(product.input)) {
+			product.setError("Caracteres invalidos");
+			return 1;
+		} else {
+			product.setError("");
+			return 0;
+		}
+	} else {
+		product.setError("Introduzca una Descripcion!");
 		return 1;
 	}
 };

@@ -2,8 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import "./formProducto.css";
 import Button from "../../elements/Button";
 import Input from "../../elements/Input";
-import { useInput, useLoading } from "../../hooks/hooks";
-import { validateNumber, validateProduct } from "../../utils/validations";
+import { useInput, useLoading, usePopUp } from "../../hooks/hooks";
+import {
+	validateNumber,
+	validateProduct,
+	validateProductD,
+} from "../../utils/validations";
 import { truncate, getCode, setInput } from "../../utils/functions";
 import {
 	useAddProductMutation,
@@ -28,6 +32,10 @@ function FormProducto() {
 	const products = useSelector((state: RootState) => state.prodcts.products);
 	const categories = useSelector((state: RootState) => state.cats.categories);
 	const [codigo, setCodigo] = useState<string>("");
+	const navigate = useNavigate();
+	const popUp = usePopUp(
+		`Producto ${productId ? "modificado" : "añadido"} de manera exitosa`
+	);
 
 	//trayendo las categorias
 
@@ -48,7 +56,7 @@ function FormProducto() {
 	//
 
 	//añadiendo un producto
-	const addNewProduct = async (
+	const handleProduct = async (
 		nombre: string,
 		descripcion: string,
 		cantidad: number,
@@ -57,7 +65,7 @@ function FormProducto() {
 	) => {
 		formLoading.setLoading(true);
 		const product: newProductT = {
-			codigo: "" + getCode(1000),
+			codigo: `${productId ? codigo : getCode(1000)}`,
 			descripcion: nombre,
 			categoria: [
 				{
@@ -72,21 +80,29 @@ function FormProducto() {
 				},
 			],
 		};
-		const respuesta = await addProduct(product);
+		const respuesta = productId
+			? await updateProduct(product)
+			: await addProduct(product);
 		const data = respuesta.data;
-		formLoading.setMessage(data.message);
+		if (data.code === 1000) {
+			popUp.execute();
+			if (productId) {
+				navigate("/productlist");
+			}
+		} else {
+			formLoading.setMessage(data.message);
+		}
 		formLoading.setLoading(false);
 	};
 	//validando el formulario y añadiendo el producto
-	const handleAdd = () => {
-		console.log(categoria.current?.value);
+	const handleClick = () => {
 		let flags = 0;
 		flags += validateProduct(nombre);
-		flags += validateProduct(descripcion);
+		flags += validateProductD(descripcion);
 		flags += validateNumber(cantidad);
 		flags += validateNumber(precio);
 		if (flags === 0) {
-			addNewProduct(
+			handleProduct(
 				nombre.input,
 				descripcion.input,
 				parseInt(cantidad.input),
@@ -100,62 +116,9 @@ function FormProducto() {
 		}
 	};
 
-	const updateNewProduct = async (
-		codigo: string,
-		nombre: string,
-		descripcion: string,
-		cantidad: number,
-		precio: number,
-		categoria: number
-	) => {
-		formLoading.setLoading(true);
-		const product: newProductT = {
-			codigo: codigo,
-			descripcion: nombre,
-			categoria: [
-				{
-					categoria_id: categoria,
-				},
-			],
-			detalle_producto: [
-				{
-					descripcion: descripcion,
-					stock: cantidad,
-					precio: precio,
-				},
-			],
-		};
-		const respuesta = await updateProduct(product);
-		const data = respuesta.data;
-		formLoading.setMessage(data.message);
-		formLoading.setLoading(false);
-	};
-
-	//modificando un producto
-	const handleModify = () => {
-		let flags = 0;
-		flags += validateProduct(nombre);
-		flags += validateProduct(descripcion);
-		flags += validateNumber(cantidad);
-		flags += validateNumber(precio);
-		if (flags === 0) {
-			updateNewProduct(
-				codigo,
-				nombre.input,
-				descripcion.input,
-				parseInt(cantidad.input),
-				parseInt(precio.input),
-				parseInt(categoria.current?.value as string)
-			);
-			truncate(nombre);
-			truncate(descripcion);
-			truncate(cantidad);
-			truncate(precio);
-		}
-	};
 	return (
 		<section className="mt-12 h-full">
-			<div className="product-form__container flex flex-col items-center justify-center h-[80%] text-negro-500">
+			<div className="product-form__container flex flex-col items-center justify-center h-[80%] text-negro-500 ">
 				<h1 className="product-form__title text-3xl text-center font-bold">
 					{`${productId ? "Modificar" : "Añadir"} Producto`}
 				</h1>
@@ -215,16 +178,11 @@ function FormProducto() {
 								</div>
 							</div>
 							<div className="w-[90%] flex justify-center ">
-								{!productId && (
-									<Button label="Añadir" onClick={handleAdd} primary={false} />
-								)}
-								{productId && (
-									<Button
-										label="Modificar"
-										onClick={handleModify}
-										primary={false}
-									/>
-								)}
+								<Button
+									label={`${productId ? "Modificar" : "Añadir"}`}
+									onClick={handleClick}
+									primary={false}
+								/>
 							</div>
 						</>
 					)}
