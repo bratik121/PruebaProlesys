@@ -38,6 +38,8 @@ function Login() {
 			dispatch(setToken(user));
 			navigate("/");
 		} else {
+			truncate(usuario);
+			truncate(contraseña);
 			loginLoading.setMessage(data.message);
 		}
 		loginLoading.setLoading(false);
@@ -49,8 +51,6 @@ function Login() {
 		flags += validateContraseña(contraseña);
 		if (flags === 0) {
 			logIn(usuario.input, contraseña.input);
-			truncate(usuario);
-			truncate(contraseña);
 		}
 	};
 
