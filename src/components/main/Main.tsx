@@ -1,10 +1,21 @@
 import "./main.css";
 import { lazy, Suspense } from "react";
 import { motion as m } from "framer-motion";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { RootState } from "../../redux/app/store";
 const MainImg = lazy(() => import("./MainImg"));
 import Button from "../../elements/Button";
 function Main() {
-	const handleClick = () => {};
+	const navigate = useNavigate();
+	const { loged } = useSelector((state: RootState) => state.auth);
+	const handleClick = () => {
+		if (loged) {
+			navigate("/productlist");
+		} else {
+			navigate("/signForm/login");
+		}
+	};
 	return (
 		<main className="mt-12 flex w-full h-[93%] ">
 			<div className="main__left w-1/2 flex justify-center items-center">
