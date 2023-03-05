@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./listaProductos.css";
-import { Link } from "react-router-dom";
 import { motion as m, AnimatePresence } from "framer-motion";
-import { RiAddCircleLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { useGetProductsQuery } from "../../redux/api/api";
 import { productT } from "../../redux/types/types";
@@ -10,6 +8,7 @@ import Product from "./Product";
 import Spinner from "../../elements/Spinner";
 import { setProducts as setProductsSlice } from "../../redux/features/productSlice";
 import ListaCategorias from "./ListaCategorias";
+import ListaProductosHeader from "./ListaProductosHeader";
 
 function ListaProductos() {
 	const { data, isError, error, isLoading } = useGetProductsQuery();
@@ -57,15 +56,7 @@ function ListaProductos() {
 	return (
 		<section className="product-list mt-12 h-full flex flex-col">
 			{/* Header del container para añaidr productos */}
-			<div className="product-lits__header h-12 flex w-[100%] items-center justify-end px-4 py-3">
-				<Link
-					to="/productform"
-					className="flex items-center gap-2 hover:text-verde-300 transition duration-150"
-				>
-					Añadir producto
-					<RiAddCircleLine className="text-xl" />
-				</Link>
-			</div>
+			<ListaProductosHeader />
 			{/* Contenedor de las categorias y las lista de los productos */}
 			<div
 				className="product-list__container flex 

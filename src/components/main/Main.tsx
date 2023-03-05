@@ -1,6 +1,7 @@
 import "./main.css";
+import { lazy, Suspense } from "react";
 import { motion as m } from "framer-motion";
-import mainImg from "../../assets/pexels-1.png";
+const MainImg = lazy(() => import("./MainImg"));
 import Button from "../../elements/Button";
 function Main() {
 	const handleClick = () => {};
@@ -33,9 +34,9 @@ function Main() {
 				</div>
 			</div>
 			<div className="main__right w-1/2 flex justify-center items-center relative">
-				<div className="main__img ">
-					<img src={mainImg} alt="" className="w-full  h-full object-cover" />
-				</div>
+				<Suspense fallback={<div>cargando Imagen...</div>}>
+					<MainImg />
+				</Suspense>
 			</div>
 		</main>
 	);

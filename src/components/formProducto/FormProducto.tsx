@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./formProducto.css";
 import Button from "../../elements/Button";
 import Input from "../../elements/Input";
@@ -15,7 +15,7 @@ import {
 } from "../../redux/api/api";
 import Spinner from "../../elements/Spinner";
 import { useNavigate, useParams } from "react-router-dom";
-import { categoryT, newProductT } from "../../redux/types/types";
+import { newProductT } from "../../redux/types/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/app/store";
 
